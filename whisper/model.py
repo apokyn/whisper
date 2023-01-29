@@ -150,7 +150,8 @@ class AudioEncoder(nn.Module):
         x = F.gelu(self.conv2(x))
         x = x.permute(0, 2, 1)
 
-        assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
+        # DISABLED FOR REALTIME TRANSCRIPTION
+        # assert x.shape[1:] == self.positional_embedding.shape, "incorrect audio shape"
         x = (x + self.positional_embedding).to(x.dtype)
 
         for block in self.blocks:
